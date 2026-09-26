@@ -1,0 +1,8 @@
+services:
+  web_front:
+    image: nginx:alpine
+    container_name: web_front_nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/usr/share/nginx/html:ro
