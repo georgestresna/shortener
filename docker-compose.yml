@@ -1,8 +1,19 @@
 services:
-  web_front:
-    image: nginx:alpine
-    container_name: web_front_nginx
+  redis:
+    image: redis:alpine
     ports:
-      - 8000:80
-    volumes:
-      - ./app/frontend:/usr/share/nginx/frontend:ro
+      - "6379:6379"
+
+  api:
+    build: ./app/api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+
+  frontend:
+    build: ./app/frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - api

@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL $hortener</title>
-</head>
+<html>
 <body>
-    <h2>$hortner</h2>
-    <form action="#" method="POST">
-        <input type="url" id="longUrl" placeholder="Long URL" required>
-        <button type="submit">Generate</button>
-    </form>
+    <h3>URL Shortener</h3>
+    <input type="text" id="url" placeholder="https://exemplu.ro" style="width: 300px;">
+    <button onclick="shorten()">Shorten</button>
+    <div id="result" style="margin-top: 10px;"></div>
+    <script src="app.js"></script>
 </body>
 </html>
