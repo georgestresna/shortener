@@ -3,9 +3,17 @@ import random
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.responses import RedirectResponse
 import redis
+import os
+
+#var mediu
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
+
+#ERROR_RATE = float(os.getenv("ERROR_RATE", "0"))
+#EXTRA_LATENCY_MS = int(os.getenv("EXTRA_LATENCY_MS", "0"))
 
 app = FastAPI()
-r = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
+r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 def generate_code(length=6):
     chars = string.ascii_letters + string.digits
@@ -42,3 +50,16 @@ def get_stats(code: str):
     if clicks is None:
         raise HTTPException(status_code=404, detail="Link not found")
     return {"clicks": int(clicks)}
+
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+@app.get("/ready")
+def ready():
+    r.ping()
+    return {"status": "ready"}
+
+# from prometheus_fastapi_instrumentator import Instrumentator
+# Instrumentator().instrument(app).expose(app)
