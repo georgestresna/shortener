@@ -33,3 +33,5 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements.txt -r requirements-dev.txt
       - run: pytest -v
+
+#added to test pr automatic func
