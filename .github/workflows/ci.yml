@@ -2,9 +2,34 @@ name: ci
 
 on:
   push:
+    branches: [main]
+  pull_request:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
+    services:
+      redis:
+        image: redis:7.4-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 5
+
+    defaults:
+      run:
+        working-directory: app/api
+
+    env:
+      REDIS_HOST: localhost
+
     steps:
-      - run: echo "Github Action workflow functional"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+      - run: pytest -v
