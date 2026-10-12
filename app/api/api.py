@@ -19,11 +19,11 @@ def generate_code(length=6):
     chars = string.ascii_letters + string.digits
     return ''.join(random.choice(chars) for _ in range(length))
 
-@app.post("/api/shorten")
+@app.post("/api/shorten", status_code=201)
 def shorten_url(payload: dict = Body(...)):
     url = payload.get("url")
     if not url:
-        raise HTTPException(status_code=400, detail="Câmpul 'url' lipsește din JSON")
+        raise HTTPException(status_code=400, detail="Campul 'url' lipsește din JSON")
         
     code = generate_code()
     

@@ -16,6 +16,17 @@ services:
     depends_on:
       - redis
 
+  test:
+    build: ./app/api
+    profiles: ["test"]
+    environment:
+      REDIS_HOST: redis
+#      ERROR_RATE: "0"       
+#      EXTRA_LATENCY_MS: "0"
+    command: sh -c "pip install -q -r requirements-dev.txt && pytest -v"
+    depends_on:
+      - redis
+
   frontend:
     build: ./app/frontend
     ports:
