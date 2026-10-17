@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: ghcr.io/georgestresna/shortener-api:ec4f207fd09112eefde5be3b0008cdb9dae08ac8
+          image: ghcr.io/georgestresna/shortener-api
           ports:
             - containerPort: 8000
           env:

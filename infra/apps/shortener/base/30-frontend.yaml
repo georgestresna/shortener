@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/georgestresna/shortener-frontend:ec4f207fd09112eefde5be3b0008cdb9dae08ac8
+          image: ghcr.io/georgestresna/shortener-frontend
           ports:
             - containerPort: 80
           resources:
