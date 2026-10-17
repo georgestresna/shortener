@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: shortener
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/georgestresna/shortener.git
+    targetRevision: main
+    path: infra/apps/shortener/base
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: shortener
+  syncPolicy:
+    automated:
+      prune: true                # sterge din cluster ce dispare din Git
+      selfHeal: true             # anulează modificările manuale

@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - 00-namespace.yaml
+  - 10-redis.yaml
+  - 20-api.yaml
+  - 30-frontend.yaml
+  - 40-ingress.yaml
+
+images:
+  - name: ghcr.io/georgestresna/shortener-api
+    newTag: ec4f207fd09112eefde5be3b0008cdb9dae08ac8
+  - name: ghcr.io/georgestresna/shortener-frontend
+    newTag: ec4f207fd09112eefde5be3b0008cdb9dae08ac8
