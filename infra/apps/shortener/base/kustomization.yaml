@@ -15,3 +15,6 @@ images:
 - name: ghcr.io/georgestresna/shortener-frontend
   newName: ghcr.io/georgestresna/shortener-frontend
   newTag: fd40ee799f277fdd84dafe31d5c6b6f3659fac56
+
+configurations:
+  - rollout-transform.yaml
