@@ -1,0 +1,10 @@
+persistence:
+  enabled: false          # pe clusterul de test, dashboard-ul îl salvăm ca JSON în Git
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server.monitoring.svc
+        isDefault: true
