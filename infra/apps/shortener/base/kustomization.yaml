@@ -11,10 +11,10 @@ resources:
 images:
 - name: ghcr.io/georgestresna/shortener-api
   newName: ghcr.io/georgestresna/shortener-api
-  newTag: 5ba4a2109d48abbd5d2799dd5279d36b651ff026
+  newTag: 7912f90c55d9501de48a38a566a6b00c6fe59919
 - name: ghcr.io/georgestresna/shortener-frontend
   newName: ghcr.io/georgestresna/shortener-frontend
-  newTag: 5ba4a2109d48abbd5d2799dd5279d36b651ff026
+  newTag: 7912f90c55d9501de48a38a566a6b00c6fe59919
 
 configurations:
 - rollout-transform.yaml
