@@ -27,6 +27,8 @@ spec:
               value: "redis"
             - name: REDIS_PORT
               value: "6379"
+            # - name: ERROR_RATE
+            #   value: "0.3"
           resources:
             requests:
               cpu: 50m
