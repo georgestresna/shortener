@@ -27,7 +27,10 @@ async def fault_injection(request: Request, call_next):
         return JSONResponse({"error": "injected fault"}, status_code=500)
     return await call_next(request)
 
-Instrumentator().instrument(app).expose(app, include_in_schema=False)
+Instrumentator(
+    excluded_handlers=["/health", "/ready", "/metrics"],
+).instrument(app).expose(app, include_in_schema=False)
+
 
 
 r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
@@ -77,6 +80,3 @@ def health():
 def ready():
     r.ping()
     return {"status": "ready"}
-
-# from prometheus_fastapi_instrumentator import Instrumentator
-# Instrumentator().instrument(app).expose(app)
