@@ -8,3 +8,6 @@ datasources:
         type: prometheus
         url: http://prometheus-server.monitoring.svc
         isDefault: true
+sidecar:
+  dashboards:
+    enabled: true        
