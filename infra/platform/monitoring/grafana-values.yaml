@@ -1,13 +1,17 @@
 persistence:
-  enabled: false          # pe clusterul de test, dashboard-ul îl salvăm ca JSON în Git
+  enabled: false
+service:
+  type: NodePort
+  nodePort: 30300
+sidecar:
+  dashboards:
+    enabled: true
 datasources:
   datasources.yaml:
     apiVersion: 1
     datasources:
       - name: Prometheus
+        uid: prometheus
         type: prometheus
         url: http://prometheus-server.monitoring.svc
         isDefault: true
-sidecar:
-  dashboards:
-    enabled: true        
