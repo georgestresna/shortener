@@ -12,7 +12,14 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: shortener
+  ignoreDifferences:               # NOU: ArgoCD nu se atinge de ponderile 90/10
+    - group: traefik.io
+      kind: TraefikService
+      jsonPointers:
+        - /spec/weighted/services
   syncPolicy:
     automated:
       prune: true                # sterge din cluster ce dispare din Git
       selfHeal: true             # anulează modificările manuale
+    syncOptions:                   # NOU: respectă regula de mai sus și la sincronizare
+      - RespectIgnoreDifferences=true
